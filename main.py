@@ -9,9 +9,10 @@ from datetime import datetime
 from sqlalchemy.orm import relationship
 from functools import wraps
 from flask_gravatar import Gravatar
+import os
 app = Flask(__name__)
-app.secret_key = "TheBillionareWaqi"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
+app.secret_key = os.environ.get("SECRET_KEY")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 Bootstrap(app)
